@@ -1,8 +1,5 @@
 ## NEXT TIME:
 
-- add feedback button
-- add github icon in top right
-
 
 - start on solving (scary)
 
@@ -27,8 +24,3 @@
 - 4 QOL EASY make it so that you can drag another graph with only one expression onto a graph to add it
 - 6 make it so that hovering a graph with an expression blurs/makes it clear you can drop it in. noone will know you can do that.
 - also consider (later) making it so that you can select a portion of the graph to set the bounds
-
-DONE:
-
-- 9 feature - make the expression you drag to go on top
-- easy - make it so that hovering while holding an expression gives a nice background
