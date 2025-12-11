@@ -56,7 +56,7 @@ onMounted(() => {
 }
 
 .toolbar-section {
-	padding: 8px 8px;
+	padding: 10px 10px;
 
 	display: flex;
 	justify-content: center;
