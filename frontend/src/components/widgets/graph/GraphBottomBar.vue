@@ -2,7 +2,6 @@
 import PopMenu from '@/components/ui/PopMenu.vue'
 import { useWidgetStore } from '@/stores/useWidgetStore'
 import { GraphData, ExpressionData, graphColors } from '@/utils/widgetData'
-import { nextTick, ref } from 'vue'
 
 const props = defineProps<{
 	id: string
@@ -11,7 +10,7 @@ const widgetStore = useWidgetStore()
 const widget = widgetStore.getWidgetById(props.id)
 if (!(widget instanceof GraphData)) throw new Error('this aint no graph')
 
-function convertToExpression(expression: ExpressionData) {
+function convertToExpressionWidget(expression: ExpressionData) {
 	// remove expression from graph
 	if (!(widget instanceof GraphData)) throw new Error('this aint no graph')
 	widget.deleteExpression(expression)
@@ -73,7 +72,7 @@ function changeColor(expression: ExpressionData, color: string) {
 							<circle class="color-circle" :fill="color" @click="changeColor(expression, color)"></circle>
 						</svg>
 					</div>
-					<div class="popmenu-button" @click="convertToExpression(expression)">Convert to Expression</div>
+					<div class="popmenu-button" @click="convertToExpressionWidget(expression)">Convert to Expression</div>
 					<div class="popmenu-button" @click="widget.deleteExpression(expression)" style="color: red">
 						Delete
 					</div>
