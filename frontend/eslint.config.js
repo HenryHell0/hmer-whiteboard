@@ -1,50 +1,61 @@
-import { defineConfig } from 'eslint-define-config'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
 import vue from 'eslint-plugin-vue'
+import vueParser from 'vue-eslint-parser'
 import prettier from 'eslint-config-prettier'
 
-export default defineConfig([
+export default [
 	{
-		// Lint all relevant files
-		files: ['**/*.{ts,tsx,js,mjs,jsx,vue}'],
+		files: ['**/*.vue'],
 
-		// Tell ESLint how to PARSE TypeScript + Vue
+		languageOptions: {
+			parser: vueParser,
+			parserOptions: {
+				parser: tsParser, // <-- TypeScript inside <script lang="ts">
+				project: ['./tsconfig.json'],
+				extraFileExtensions: ['.vue'],
+				ecmaVersion: 'latest',
+				sourceType: 'module',
+			},
+		},
+
+		plugins: {
+			vue,
+			'@typescript-eslint': tsPlugin,
+		},
+
+		rules: {
+			...vue.configs['flat/recommended'].rules,
+			...tsPlugin.configs.recommended.rules,
+
+			'vue/multi-word-component-names': [
+				'error',
+				{ ignores: ['Widget', 'Toolbar', 'Expression', 'Graph', 'Widgets'] },
+			],
+		},
+	},
+
+	{
+		// normal TS/JS files
+		files: ['**/*.{ts,tsx,js,mjs,jsx}'],
+
 		languageOptions: {
 			parser: tsParser,
 			parserOptions: {
-				sourceType: 'module',
+				project: ['./tsconfig.json'],
 				ecmaVersion: 'latest',
-				extraFileExtensions: ['.vue'],
-				project: ['./tsconfig.json'], // enables full type-check rules
-			},
-			globals: {
-				window: 'readonly',
-				document: 'readonly',
+				sourceType: 'module',
 			},
 		},
 
 		plugins: {
 			'@typescript-eslint': tsPlugin,
-			vue,
 		},
 
-		// Use recommended rule sets
 		rules: {
-			...vue.configs['vue3-essential'].rules,
 			...tsPlugin.configs.recommended.rules,
-
-			// Your custom vue exceptions
-			'vue/multi-word-component-names': [
-				'error',
-				{
-					ignores: ['Widget', 'Toolbar', 'Expression', 'Graph', 'Widgets'],
-				},
-
-			],
 		},
 	},
 
-	// Prettier last so it disables formatting rules
 	prettier,
-])
+]
