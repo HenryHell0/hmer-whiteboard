@@ -1,32 +1,21 @@
 <script setup lang="ts">
-//TODO add more stuff to this directory with the buttons, setction etc. See chat's idea
-import { onMounted, ref, toRef } from 'vue'
 import { useSessionStore } from '@/stores/useSessionStore'
-import { useDrawingOpacity } from '@/composables/useDrawingOpacity'
 import { toolList } from '@/utils/drawingTools'
+import ToolbarSection from './ToolbarSection.vue'
 const sessionStore = useSessionStore()
 
 // make elemnt transparent when drawing over it
-const element = ref<HTMLElement | null>(null)
 
-onMounted(() => {
-	if (element.value) {
-		for (const child of element.value.children) {
-			if (!(child instanceof HTMLElement)) throw new Error('not an HTMLElement (wont happen)')
-			useDrawingOpacity(ref(child))
-		}
-	}
-})
 </script>
 <template>
 	<div ref="element" class="toolbar-container">
-		<!-- <div class="toolbar-section"  @mouseenter="sessionStore.inputMode = 'idle'">
-		hey
-		</div> -->
+		<!-- future left one -->
+		<!-- <ToolbarSection style="display: hidden"> </ToolbarSection> -->
 
 		<!-- ========== DRAWING TOOLS ============= -->
 		<!-- later we will have this be its own little thing and add undo/redo and pan tools -->
-		<div class="toolbar-section center-toolbar" @mouseenter="sessionStore.inputMode = 'idle'">
+
+		<ToolbarSection class="center-toolbar">
 			<button
 				v-for="tool in toolList"
 				:key="tool"
@@ -35,14 +24,13 @@ onMounted(() => {
 			>
 				<img :src="`./assets/${tool}.svg`" draggable="false" />
 			</button>
-		</div>
+		</ToolbarSection>
 
-		<!-- ===========feedback button ================-->
-		<div class="toolbar-section" @mouseenter="sessionStore.inputMode = 'idle'">
+		<ToolbarSection>
 			<button @click="sessionStore.inputMode = 'feedback'" class="toolbar-button">
 				<img :src="`./assets/feedback.svg`" draggable="false" />
 			</button>
-		</div>
+		</ToolbarSection>
 	</div>
 </template>
 <style scoped>
@@ -53,21 +41,6 @@ onMounted(() => {
 
 	align-items: center;
 	justify-content: space-between;
-}
-
-.toolbar-section {
-	padding: 10px 10px;
-
-	display: flex;
-	justify-content: center;
-	gap: 10px;
-
-	background-color: white;
-	border-radius: 1000px;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-	z-index: 100;
-	user-select: none;
-
 }
 
 .center-toolbar {
