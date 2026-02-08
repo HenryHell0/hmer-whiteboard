@@ -7,7 +7,6 @@ import { useCanvasStore } from '@/stores/useCanvasStore.js'
 import { useSessionStore } from '@/stores/useSessionStore.js'
 import { DEBUG } from './debug.js'
 
-export type ToolName = 'pen' | 'eraser' | 'selector'
 
 export interface Tool {
 	onDown?: (event: MouseEvent | PointerEvent) => void
@@ -180,7 +179,8 @@ export const selector: SelectorTool = reactive(
 	})(),
 )
 
-export const toolList: ToolName[] = ['pen', 'eraser', 'selector']
+export const toolList = ['pen', 'eraser', 'selector'] as const
+export type ToolName = typeof toolList[number]
 export const tools: Record<ToolName, Tool> = {
 	pen: pen,
 	eraser: eraser,
