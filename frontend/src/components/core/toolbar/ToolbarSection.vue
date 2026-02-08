@@ -9,7 +9,6 @@ const sessionStore = useSessionStore()
 const element = ref<HTMLElement | null>(null)
 useDrawingOpacity(element)
 
-//! TODO TODO THIS SHOULD BE A COMPOSABLE?...
 function setIdleInputMode() {
 	sessionStore.inputMode = 'idle'
 }
