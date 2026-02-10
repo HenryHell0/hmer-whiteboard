@@ -36,16 +36,16 @@ button {
 
 button:hover {
 	transform: scale(1.1);
-	background: var(--color-toolbar-button-hover);
+	background: var(--color-bg-1);
 }
 
 button.active {
-	background-color: var(--color-toolbar-button-active);
+	background-color: var(--color-bg-2);
 	transform: scale(1.1);
 }
 
 button.active:hover {
-	background-color: var(--color-toolbar-button-active-hover);
+	background-color: var(--color-bg-2);
 	transform: scale(1.2);
 }
 </style>

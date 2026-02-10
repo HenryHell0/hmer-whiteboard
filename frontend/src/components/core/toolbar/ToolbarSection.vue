@@ -26,7 +26,7 @@ function setIdleInputMode() {
 	justify-content: center;
 	gap: 10px;
 
-	background-color: var(--toolbar-background);
+	background-color: var(--color-bg-0);
 	border-radius: 1000px;
 	box-shadow: 0 4px 10px var(--color-box-shadow);
 	z-index: 100;
