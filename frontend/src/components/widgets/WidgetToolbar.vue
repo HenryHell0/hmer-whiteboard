@@ -36,19 +36,19 @@ const { isDragging, widget } = defineProps<{
 .toolbar {
 	border-top-left-radius: inherit;
 	border-top-right-radius: inherit;
-	background-color: var(--color-widget-toolbar-bg);
+	background-color: var(--color-bg-1);
 	width: 100%;
 	position: relative;
 
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between; /* NEW */
+	justify-content: space-between;
 
 	cursor: grab;
 }
 
 .title {
-	color: var(--color-widget-title);
+	color: var(--color-text-dark);
 	font-size: 100%;
 	padding: 0.5em;
 	align-self: flex-start;
@@ -70,38 +70,48 @@ const { isDragging, widget } = defineProps<{
 }
 
 .x-button:hover {
-	background-color: var(--color-widget-toolbar-x-hover);
+	background-color: var(--color-bg-3);
 }
 
 .button-container {
+	--margin-top-bottom: 1px;
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
 
+
+	background-color: var(--color-gray-50);
+	border-radius: 5px;
+	margin-top: var(--margin-top-bottom);
+	margin-bottom: var(--margin-top-bottom);
+
+
 	box-sizing: border-box;
-	height: 100%;
-	padding-top: 2px;
-	padding-bottom: 2px;
+	height: calc( 100% - 2 * var(--margin-top-bottom));
+	padding-top: 1px;
+	padding-bottom: 1px;
+
+	display: flex;
+	padding: 1px;
 }
 
 .toolbar-button {
-	border: none;
-	border-radius: 0.4em;
 
 	height: 100%;
 	min-height: 10px;
 	aspect-ratio: 1 / 1;
 
+	border-radius: inherit;
+
 	cursor: pointer;
 
-	background-color: var(--color-widget-toolbar-icon-background);
-	box-shadow: 0 0 4px var(--color-widget-toolbar-icon-box-shadow);
 	transition:
-		background ease-in-out 0.1s;
+		background ease-in-out 0.2s,
+		transform ease-in-out 0.2s;
 }
 
 .toolbar-button:hover {
-	background-color: var(--color-widget-toolbar-icon-hover-background);
-	box-shadow: 0 0 6px var(--color-widget-toolbar-icon-hover-box-shadow);
+	background-color: var(--color-bg-1);
+	transform: scale(1.1);
 }
 </style>

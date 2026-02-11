@@ -1,8 +1,4 @@
 :root {
-	/* =========================================================
-	   PALETTE ALIASES - don't use in component
-	========================================================= */
-
 
 	/* =========================================================
 	   SEMANTIC TOKENS (PRIMARY GLOBAL DESIGN SYSTEM)
@@ -12,8 +8,8 @@
 	/* --- Base surfaces --- */
 	--color-bg-0: white; /* white background */
 	--color-bg-1: var(--color-gray-200);
-	--color-bg-2: var(--color-zinc-300);
-	--color-bg-3: var(--color-zinc-400);
+	--color-bg-2: var(--color-gray-300);
+	--color-bg-3: var(--color-gray-300);
 
 	/* --- Borders --- */
 	--color-border-medium: var(--gray-main);

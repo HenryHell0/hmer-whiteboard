@@ -128,7 +128,7 @@ onUnmounted(() => {
 	overflow: hidden;
 
 	border-radius: 0.5em;
-	background: var(--color-widget-background);
+	background: var(--color-bg-0);
 	box-shadow: 2px 2px 10px var(--color-box-shadow);
 
 	pointer-events: fill;

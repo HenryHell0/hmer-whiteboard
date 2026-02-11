@@ -40,7 +40,7 @@ button:hover {
 }
 
 button.active {
-	background-color: var(--color-bg-2);
+	background-color: var(--color-bg-3);
 	transform: scale(1.1);
 }
 
