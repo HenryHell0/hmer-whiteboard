@@ -16,6 +16,9 @@ const props = defineProps<{
 }>()
 const widget = widgetStore.getWidgetById(props.id)
 
+// =======================================
+// ALL of this should be composables
+// ======================================
 var element = ref<HTMLElement | null>(null)
 useDrawingOpacity(element)
 
@@ -62,12 +65,12 @@ watch(
 	() => clampToViewport(),
 )
 
-function toolbarClicked(event: MouseEvent) {
+function toolbarClicked(event: PointerEvent) {
 	dragStart(event)
 	sessionStore.heldWidgetId = widget.id
 	bringToFront()
 }
-function toolBarMove(event: MouseEvent) {
+function toolBarMove(event: PointerEvent) {
 	if (!dragMove(event)) return
 
 	if (!element.value) throw new Error('no element aaah!')
@@ -88,21 +91,22 @@ function bringToFront() {
 	widgetStore.bringWidgetToFront(widget)
 }
 
+// can't I extract these to their respective composables?
 onMounted(() => {
 	clampToViewport()
 
-	document.addEventListener('mousemove', toolBarMove)
-	document.addEventListener('mouseup', toolbarReleased)
+	document.addEventListener('pointermove', toolBarMove)
+	document.addEventListener('pointerup', toolbarReleased)
 
-	document.addEventListener('mousemove', resizeMove)
-	document.addEventListener('mouseup', resizeEnd)
+	document.addEventListener('pointermove', resizeMove)
+	document.addEventListener('pointerup', resizeEnd)
 })
 onUnmounted(() => {
-	document.removeEventListener('mousemove', dragMove)
-	document.removeEventListener('mouseup', dragEnd)
+	document.removeEventListener('pointermove', dragMove)
+	document.removeEventListener('pointerup', dragEnd)
 
-	document.removeEventListener('mousemove', resizeMove)
-	document.removeEventListener('mouseup', resizeEnd)
+	document.removeEventListener('pointermove', resizeMove)
+	document.removeEventListener('pointerup', resizeEnd)
 })
 </script>
 <template>
@@ -113,7 +117,7 @@ onUnmounted(() => {
 			<slot></slot>
 		</div>
 
-		<img class="resizer" @mousedown="resizeStart" :src="'./assets/resize.svg'" draggable="false" />
+		<img class="resizer" @pointerdown="resizeStart" v-touch-prevent :src="'./assets/resize.svg'" draggable="false" />
 	</div>
 </template>
 <style scoped>
@@ -148,8 +152,8 @@ onUnmounted(() => {
 	right: 0;
 	bottom: 0;
 	transform: translate(-1px, -1px);
-	width: 1em;
-	height: 1em;
+	width: 1.2em;
+	height: 1.2em;
 	cursor: se-resize;
 	fill: var(--color-icon);
 	z-index: 2;

@@ -11,7 +11,8 @@ const { isDragging, widget } = defineProps<{
 <template>
 	<div
 		class="toolbar"
-		@mousedown="(e) => $emit('toolbarClicked', e)"
+		v-touch-prevent
+		@pointerdown="(e) => $emit('toolbarClicked', e)"
 		:style="{ cursor: isDragging ? 'grabbing' : 'grab' }"
 	>
 		<div class="title">{{ widget.type }}</div>

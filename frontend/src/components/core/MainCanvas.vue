@@ -44,10 +44,7 @@ function SVGMouseUp(event: PointerEvent) {
  		@pointermove.prevent="SVGMouseMove"
  		@pointerup.prevent="SVGMouseUp"
  		@pointercancel.prevent="SVGMouseUp"
-		@touchstart.prevent
-		@touchmove.prevent
-		@touchend.prevent
- 		@contextmenu.prevent>
+		v-touch-prevent>
 		<path v-for="path in canvasStore.paths" :d="path.d" class="stroke" :key="path.id" :data-id="path.id" />
 
 		<path v-if="sessionStore.currentStroke.length > 1" :d="sessionStore.currentPath" class="stroke" />
