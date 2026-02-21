@@ -1,6 +1,7 @@
 ## THE PLAN!!!:
-- ↩️ add undo/redo
-- 🔗 add save/load with the link (shareable!!)
+- 🗨️ fix dialog architecture 
+- 😄 make intro dialog with GIFs!!!!!!!
+- 🔗 add save/load
 - 🐱 add github icon that links to the github page
 - ℹ️ add info button that shows a dialog of info about myself etc... - figure out a better dialog system
 - 😜 refactor widgets to organize and follow best pracitces of like vue architecture organization... --- NOTE: tf does this mean
@@ -8,6 +9,7 @@
 
 ### General
 
+- right now you can't exit the feedback dialog. either add an X button OR make it so clicking the background closes it
 - 8 editable expression component!
 - 6 infinite pannable camera 
     - grab icon panning tool
@@ -23,6 +25,17 @@
 - also consider (later) making it so that you can select a portion of the graph to set the bounds
 
 
+### Other Stuff:
+- Add to Google Analytics:
+    “Converted handwriting”
+    “Created graph”
+    “Exported LaTeX”
+    Now you can say:
+    “Users converted 3,482 math expressions.”
+
+
 ### DONE:
 - 🔨 refactor toolbar
 - 🖌️ add global color scheme with :root so its nice and easy 
+- ↩️ add undo/redo
+- 📞 make it work on phones
