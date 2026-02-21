@@ -23,14 +23,9 @@ function SVGMouseMove(event: MouseEvent | PointerEvent) {
 	if (sessionStore.inputMode == 'drawing') {
 		tools[sessionStore.activeTool].onMove?.(event)
 	}
-	sessionStore.previousMousePos.x = event.clientX
-	sessionStore.previousMousePos.y = event.clientY
 
-	if (DEBUG.logMouseMovements) {
-		console.log(
-			`ClientX: ${event.clientX}  ClientY: ${event.clientY}. \n OffsetX: ${event.offsetX}  OffsetY: ${event.offsetY}`,
-		)
-	}
+	sessionStore.updatePreviousMousePos(event)
+	DEBUG.logMouseMovements(event)
 }
 
 function SVGMouseUp() {

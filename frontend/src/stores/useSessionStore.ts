@@ -16,7 +16,7 @@ export const useSessionStore = defineStore('session', () => {
 	const currentPath = computed<string>(() => strokeToPath(currentStroke.value))
 
 
-	const previousMousePos = { x: -1, y: -1 }
+	const previousMousePos = ref<Position>({ x: -1, y: -1 })
 
 	const activeTool = ref<ToolName>('pen')
 	const inputMode = ref<InputModeName>('idle')
@@ -24,7 +24,19 @@ export const useSessionStore = defineStore('session', () => {
 	const heldWidgetId = ref<string>('')
 	const undos = ref<Path[]>([])
 
+	function updatePreviousMousePos(event: PointerEvent) {
+		previousMousePos.value.x = event.clientX
+		previousMousePos.value.y = event.clientY
+	}
 
-
-	return { currentStroke, currentPath, previousMousePos, activeTool, inputMode, heldWidgetId, undos }
+	return {
+		currentStroke,
+		currentPath,
+		previousMousePos,
+		activeTool,
+		inputMode,
+		heldWidgetId,
+		undos,
+		updatePreviousMousePos,
+	}
 })
