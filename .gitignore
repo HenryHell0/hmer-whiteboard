@@ -16,7 +16,7 @@ coverage
 .vscode
 
 # my stuff
-notes.txt
+*/notes.txt
 frontend/TODO.md
 
 /cypress/videos/
