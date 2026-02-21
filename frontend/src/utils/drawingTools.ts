@@ -7,7 +7,6 @@ import { useCanvasStore } from '@/stores/useCanvasStore.js'
 import { useSessionStore } from '@/stores/useSessionStore.js'
 import { DEBUG } from './debug.js'
 
-
 export interface Tool {
 	onDown?: (event: MouseEvent | PointerEvent) => void
 	onMove?: (event: MouseEvent | PointerEvent) => void
@@ -21,9 +20,9 @@ const pen = new (class implements Tool {
 		sessionStore.currentStroke = [startPos]
 	}
 	onMove(event: MouseEvent | PointerEvent) {
-		if (event.buttons !== 1) return
-
 		const sessionStore = useSessionStore()
+
+		if (sessionStore.inputMode !== 'drawing') return
 		let point = { x: event.offsetX, y: event.offsetY }
 		sessionStore.currentStroke.push(point)
 	}
@@ -31,40 +30,17 @@ const pen = new (class implements Tool {
 		const sessionStore = useSessionStore()
 		const canvasStore = useCanvasStore()
 		// "d" is the path param for <path> elemtn
-		let d = ''
-
-		/*
-		go through currentPath, and then adds
-		index 1: M x, y
-		index ...: C x, y
-		*/
-
-		if (sessionStore.currentStroke.length == 1) {
-			// lil circle
-			//? maybe switcch this to do a filled in circle somehow
-			let radius = 1
-			d += `M ${sessionStore.currentStroke[0]!.x},${sessionStore.currentStroke[0]!.y - radius}`
-			d += `a ${radius} 	${radius} 0 1 0 0.0001 0`
-		} else {
-			// line
-			d += `M ${sessionStore.currentStroke[0]!.x},${sessionStore.currentStroke[0]!.y} `
-			d += 'L '
-
-			for (let i = 1; i < sessionStore.currentStroke.length; i++) {
-				d += `${sessionStore.currentStroke[i]!.x},${sessionStore.currentStroke[i]!.y} `
-			}
-		}
-
-		canvasStore.paths.push({ d: d, id: crypto.randomUUID() })
+		canvasStore.paths.push({ d: sessionStore.currentPath, id: crypto.randomUUID() })
 		// clear path
 		sessionStore.currentStroke = []
 	}
 })()
 const eraser = new (class implements Tool {
 	onMove(event: MouseEvent | PointerEvent) {
-		if (event.buttons !== 1) return
 		const sessionStore = useSessionStore()
+		if (sessionStore.inputMode !== 'drawing') return
 		const canvasStore = useCanvasStore()
+
 
 		const startPos = sessionStore.previousMousePos
 		const endPos = { x: event.clientX, y: event.clientY }
@@ -91,6 +67,8 @@ const eraser = new (class implements Tool {
 		}
 	}
 })()
+
+//! TODO fix duplicate code
 export interface SelectorTool extends Tool {
 	readonly x: number
 	readonly y: number
@@ -180,7 +158,7 @@ export const selector: SelectorTool = reactive(
 )
 
 export const toolList = ['pen', 'eraser', 'selector'] as const
-export type ToolName = typeof toolList[number]
+export type ToolName = (typeof toolList)[number]
 export const tools: Record<ToolName, Tool> = {
 	pen: pen,
 	eraser: eraser,

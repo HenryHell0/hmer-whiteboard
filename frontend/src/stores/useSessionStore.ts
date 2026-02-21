@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import type { ToolName } from '@/utils/drawingTools.js'
 import type { Path } from './useCanvasStore'
+import { strokeToPath } from '@/utils/svgCanvasUtils'
 
 interface Position {
 	x: number
@@ -12,16 +13,8 @@ type InputModeName = 'idle' | 'drawing' | 'widget' | 'feedback' // eventually th
 
 export const useSessionStore = defineStore('session', () => {
 	const currentStroke = ref<Position[]>([])
-	const currentPath = computed<string>(() => {
-		if (currentStroke.value.length === 0) return ''
-		return (
-			`M ${currentStroke.value[0]!.x},${currentStroke.value[0]!.y} ` +
-			currentStroke.value
-				.slice(1)
-				.map((p) => `L ${p.x},${p.y}`)
-				.join(' ')
-		)
-	})
+	const currentPath = computed<string>(() => strokeToPath(currentStroke.value))
+
 
 	const previousMousePos = { x: -1, y: -1 }
 

@@ -1,6 +1,32 @@
 import { useCanvasStore } from '@/stores/useCanvasStore.js'
 const API_BASE = import.meta.env.VITE_API_BASE
 
+interface Position {
+	x: number
+	y: number
+}
+
+// later add pathToStroke
+export function strokeToPath(stroke: Position[]): string {
+	if (!stroke.length) return ''
+
+	if (stroke.length === 1) {
+		// single point → tiny circle
+		const radius = 1
+		const p = stroke[0]!
+		return `M ${p.x},${p.y - radius} a ${radius} ${radius} 0 1 0 0.0001 0`
+	}
+
+	// multiple points → line
+	return (
+		`M ${stroke[0]!.x},${stroke[0]!.y} ` +
+		stroke
+			.slice(1)
+			.map((p) => `L ${p.x},${p.y}`)
+			.join(' ')
+	)
+}
+
 export function serializeSVG(svgElement: SVGSVGElement): string {
 	for (const element of Array.from(svgElement.children)) {
 		if (element instanceof SVGElement) {
@@ -124,10 +150,16 @@ export function erasePathsInRect(x: number, y: number, width: number, height: nu
 		const boxBottom = bbox.y + bbox.height
 
 		// fully inside
-		const fullyInside = boxLeft >= rectLeft && boxRight <= rectRight && boxTop >= rectTop && boxBottom <= rectBottom
+		const fullyInside =
+			boxLeft >= rectLeft && boxRight <= rectRight && boxTop >= rectTop && boxBottom <= rectBottom
 
 		// partial overlap
-		const intersects = !(boxRight < rectLeft || boxLeft > rectRight || boxBottom < rectTop || boxTop > rectBottom)
+		const intersects = !(
+			boxRight < rectLeft ||
+			boxLeft > rectRight ||
+			boxBottom < rectTop ||
+			boxTop > rectBottom
+		)
 
 		// selection fully inside path bbox (path contains selection)
 		const containsSelection =
