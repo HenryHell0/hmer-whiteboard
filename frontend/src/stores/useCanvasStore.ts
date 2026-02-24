@@ -1,11 +1,7 @@
 import { defineStore } from 'pinia'
 import { useSessionStore } from './useSessionStore'
+import type { Path } from '@/types/types'
 import { ref } from 'vue'
-
-export interface Path {
-	d: string
-	id: string
-}
 
 export const useCanvasStore = defineStore('canvas', () => {
 	const paths = ref<Path[]>([])

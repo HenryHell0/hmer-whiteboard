@@ -1,13 +1,9 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import type { ToolName } from '@/utils/drawingTools.js'
-import type { Path } from './useCanvasStore'
+import type {  Action,  Position } from '@/types/types'
 import { strokeToPath } from '@/utils/svgCanvasUtils'
 
-interface Position {
-	x: number
-	y: number
-}
 
 type InputModeName = 'idle' | 'drawing' | 'widget' | 'feedback' // eventually this will be "dialog" not feedback ...
 
@@ -22,7 +18,8 @@ export const useSessionStore = defineStore('session', () => {
 	const inputMode = ref<InputModeName>('idle')
 
 	const heldWidgetId = ref<string>('')
-	const undos = ref<Path[]>([])
+	// eventually this will instead be history and undoneHistory or something like that I thiunk
+	const undos = ref<Action[]>([])
 
 	function updatePreviousMousePos(event: PointerEvent) {
 		previousMousePos.value.x = event.clientX
@@ -37,6 +34,7 @@ export const useSessionStore = defineStore('session', () => {
 		inputMode,
 		heldWidgetId,
 		undos,
+		redos,
 		updatePreviousMousePos,
 	}
 })
