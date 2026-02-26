@@ -1,10 +1,13 @@
 import { defineStore } from 'pinia'
 import type { Action } from '@/utils/actions'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 export const useHistoryStore = defineStore('history', () => {
 	const done = ref<Action[]>([])
 	const undone = ref<Action[]>([])
+
+	const undoAvailable = computed(() => done.value.length > 0)
+	const redoAvailable = computed(() => undone.value.length > 0)
 
 	function execute(action: Action) {
 		action.do()
@@ -26,5 +29,5 @@ export const useHistoryStore = defineStore('history', () => {
 		done.value.push(action)
 	}
 
-	return { execute, undo, redo }
+	return { execute, undo, redo, undoAvailable, redoAvailable }
 })
