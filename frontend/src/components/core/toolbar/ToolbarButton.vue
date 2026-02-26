@@ -1,22 +1,24 @@
 <script setup lang="ts">
 defineProps<{
 	active?: boolean
+	disabled?: boolean
 }>()
 </script>
 <!-- note: if we ever want a toolbar indicator or a toolbar button that changes icon based on something, we can use a slot instead, or make <ToolbarIndicator> -->
 <template>
-	<button :class="{ active: active }">
+	<button :class="{ active }" :disabled="disabled">
 		<slot />
 	</button>
 </template>
 <style scoped lang="css">
-:slotted(img) {
+:slotted(img),
+:slotted(svg) {
+	fill: var(--color-icon);
 	-webkit-user-drag: none;
 	user-select: none;
 
 	width: 1.5em;
 	height: 1.5em;
-	fill: var(--color-icon);
 	transform: scale(1.3);
 }
 
@@ -45,6 +47,19 @@ button {
 button:hover {
 	transform: scale(var(--scale-2));
 	background: var(--color-bg-1);
+}
+
+button:disabled {
+	cursor: default;
+	pointer-events: none;
+	transform: none;
+	background: none;
+}
+button:disabled {
+	cursor: default;
+	pointer-events: none;
+	transform: none;
+	background: none;
 }
 
 button.active {
