@@ -14,7 +14,7 @@
 		"preview": "vite preview",
 		"lint": "eslint . --fix",
 		"format": "prettier --write src/",
-		"deploy": "gh-pages -d dist"
+		"deploy": "npm run build && gh-pages -d dist"
 	},
 	"dependencies": {
 		"desmos": "^1.5.4",
