@@ -135,6 +135,8 @@ export const selector: SelectorTool = reactive(
 			const sessionStore = useSessionStore()
 
 			// reset
+			this.isActive = false
+			sessionStore.activeTool = 'pen'
 
 			// convert svg to png!!
 			const fullCanvas = await svgToCanvas('inputSVG')
@@ -153,10 +155,6 @@ export const selector: SelectorTool = reactive(
 			const widget = widgetStore!.widgets.at(-1)
 			if (!(widget instanceof ExpressionData)) return
 			widget.latex = await latex // update latex when its done
-
-			// clean up
-			this.isActive = false
-			sessionStore.activeTool = 'pen'
 
 			// debug stuff
 			if (DEBUG.downloadPNG) downloadCanvasPNG(croppedCanvas)

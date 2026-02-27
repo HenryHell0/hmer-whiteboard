@@ -7,6 +7,7 @@ MOBILE SUPPORT!!
 
 ### General
 
+- make a logo
 - ↩️ add actions for widget functions so undo/redo works throughout
 - 🗨️ fix dialog architecture
 - 😄 make intro dialog with GIFs!!!!!!!
