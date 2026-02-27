@@ -47,7 +47,7 @@ const historyStore = useHistoryStore()
 		<!-- GITHUB -->
 		<ToolbarSection>
 			<ToolbarButton>
-				<a href="https://github.com/henryhell0/hmer-whiteboard" target="_blank">
+				<a href="https://github.com/henryhell0/inkform" target="_blank">
 					<img src="/assets/github.svg" style="transform: scale(1.5)"/>
 				</a>
 			</ToolbarButton>

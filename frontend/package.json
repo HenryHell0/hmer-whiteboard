@@ -1,6 +1,6 @@
 {
-	"name": "hmer-whiteboard",
-	"version": "0.0.0",
+	"name": "inkform",
+	"version": "1.0",
 	"private": true,
 	"type": "module",
 	"engines": {
