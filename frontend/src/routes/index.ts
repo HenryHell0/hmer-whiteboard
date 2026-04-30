@@ -1,9 +1,9 @@
 import { type RouteRecordRaw } from 'vue-router'
 
 // todo add features and intro dialog too
-import InfoDialog from '@/views/dialogs/InfoDialog.vue'
-import FeedbackDialog from '@/views/dialogs/FeedbackDialog.vue'
-import Whiteboard from '@/views/Whiteboard.vue'
+import InfoDialog from '@/views/dialogs/EditorInfoDialog.vue'
+import FeedbackDialog from '@/views/dialogs/EditorFeedbackDialog.vue'
+import LandingView from '@/views/LandingView.vue'
 
 // alright so the way this works is the whole app is `App.vue` with a <RouteView> but we can make different routes now!
 // rn the main one is / pointing to Whiteboard.vue, and then it has /info and /feedback, so it uses it's own <RouteView> component for children
@@ -14,25 +14,34 @@ import Whiteboard from '@/views/Whiteboard.vue'
 export const routes: RouteRecordRaw[] = [
 	{
 		path: '/',
-		component: Whiteboard,
+		name: "landing",
+		component: LandingView
+	},
+	{
+		path: '/editor',
+		component: () => import('@/views/EditorView.vue'),
+				// component: EditorView,
+
 		children: [
 			{
 				path: '',
-				name: 'home', // these need to be GLOABALLY SPECIFIC! (once we have multiple pages -> "whiteboard:home")
+				name: 'editor', // these need to be GLOABALLY SPECIFIC! (once we have multiple pages -> "whiteboard:home")
 				component: { template: '<div />' }, // hacky empty component
 			},
 			{
 				path: 'info',
-				name: 'info',
+				name: 'editor:info',
 				component: InfoDialog,
 			},
 			{
 				path: 'feedback',
-				name: 'feedback',
+				name: 'editor:feedback',
 				component: FeedbackDialog,
 			},
 		],
 	},
+
+
 
 	// future other paths!
 	// {

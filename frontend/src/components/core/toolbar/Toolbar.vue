@@ -14,7 +14,7 @@ const { open: openRouteDialog } = useRouteDialogs()
 <template>
 	<div ref="element" class="toolbar-container">
 		<ToolbarSection>
-			<ToolbarButton @click="openRouteDialog('info')">
+			<ToolbarButton @click="openRouteDialog('editor:info')">
 				<img src="/assets/info.svg" style="transform: scale(1.45)" draggable="false" />
 			</ToolbarButton>
 		</ToolbarSection>
@@ -45,7 +45,7 @@ const { open: openRouteDialog } = useRouteDialogs()
 		<!-- FEEDBACK -->
 		<div class="toolbar-group">
 			<ToolbarSection>
-				<ToolbarButton @click="openRouteDialog('feedback')">
+				<ToolbarButton @click="openRouteDialog('editor:feedback')">
 					<img src="/assets/feedback.svg" draggable="false" />
 				</ToolbarButton>
 			</ToolbarSection>

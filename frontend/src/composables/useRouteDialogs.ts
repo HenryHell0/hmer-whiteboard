@@ -9,7 +9,7 @@ export function useRouteDialogs() {
 	}
 
 	function close() {
-		router.replace({ name: 'home' }) // replace does NOT make a history (back button) entry
+		router.replace({ name: 'editor' }) // replace does NOT make a history (back button) entry
 	}
 
 	return { open, close }
