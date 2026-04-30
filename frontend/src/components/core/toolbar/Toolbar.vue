@@ -62,7 +62,9 @@ const { open: openRouteDialog } = useRouteDialogs()
 </template>
 <style scoped>
 .toolbar-container {
-	width: 100%;
+	width: 100vw;
+	padding: 8px;
+	box-sizing: border-box;
 
 	display: flex;
 	justify-content: space-between;
