@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
+import tailwindcss from '@tailwindcss/vite'
 import Sitemap from 'vite-plugin-sitemap'
 import { sitemapRoutes } from './src/routes/definitions'
 import fs from 'fs'
@@ -14,6 +15,7 @@ export default defineConfig({
 	plugins: [
 		vue(),
 		vueDevTools(),
+		tailwindcss(),
 		Sitemap({
 			hostname: 'https://inkform.io',
 			dynamicRoutes: sitemapRoutes

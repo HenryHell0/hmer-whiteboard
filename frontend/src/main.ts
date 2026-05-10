@@ -11,6 +11,7 @@ import { vDrawingOpacity } from './directives/vDrawingOpacity'
 // import styles
 import './styles/pallete.css'
 import './styles/style.css'
+import './styles/index.css'
 
 export const createApp = ViteSSG(App, { routes }, ({ app, router, routes, head, initialState }) => {
 	// CONFIGURE PINIA
