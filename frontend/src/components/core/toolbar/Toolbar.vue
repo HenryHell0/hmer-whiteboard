@@ -10,12 +10,16 @@ import UndoIcon from '@/components/icons/UndoIcon.vue'
 const sessionStore = useSessionStore()
 const historyStore = useHistoryStore()
 const { open: openRouteDialog } = useRouteDialogs()
+
+const getToolImageURL = (toolName: string) => {
+  return new URL(`../../../assets/${toolName}.svg`, import.meta.url).href;
+};
 </script>
 <template>
 	<div ref="element" class="toolbar-container">
 		<ToolbarSection>
 			<ToolbarButton @click="openRouteDialog('editor:info')">
-				<img src="/assets/info.svg" style="transform: scale(1.45)" draggable="false" />
+				<img src="@/assets/info.svg" style="transform: scale(1.45)" draggable="false" />
 			</ToolbarButton>
 		</ToolbarSection>
 
@@ -37,7 +41,7 @@ const { open: openRouteDialog } = useRouteDialogs()
 					:active="sessionStore.activeTool === tool"
 					@click="sessionStore.activeTool = tool"
 				>
-					<img :src="`./assets/${tool}.svg`" draggable="false" />
+					<img :src="getToolImageURL(tool)" draggable="false" />
 				</ToolbarButton>
 			</ToolbarSection>
 		</div>
@@ -46,14 +50,14 @@ const { open: openRouteDialog } = useRouteDialogs()
 		<div class="toolbar-group">
 			<ToolbarSection>
 				<ToolbarButton @click="openRouteDialog('editor:feedback')">
-					<img src="/assets/feedback.svg" draggable="false" />
+					<img src="@/assets/feedback.svg" draggable="false" />
 				</ToolbarButton>
 			</ToolbarSection>
 			<!-- GITHUB -->
 			<ToolbarSection>
 				<ToolbarButton>
 					<a href="https://github.com/henryhell0/inkform" target="_blank">
-						<img src="/assets/github.svg" style="transform: scale(1.5)" draggable="false" />
+						<img src="@/assets/github.svg" style="transform: scale(1.5)" draggable="false" />
 					</a>
 				</ToolbarButton>
 			</ToolbarSection>

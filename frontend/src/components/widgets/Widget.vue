@@ -52,7 +52,7 @@ function contentClicked() {
 			class="resizer"
 			v-touch-prevent
 			@pointerdown="resizeDown"
-			:src="'./assets/resize.svg'"
+			src="@/assets/resize.svg"
 			draggable="false"
 		/>
 	</div>

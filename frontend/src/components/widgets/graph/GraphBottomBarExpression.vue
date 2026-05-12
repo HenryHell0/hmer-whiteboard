@@ -33,8 +33,8 @@ const { copy, copyUIOpen } = useCopyTextWithUI(props.expression.latex)
 				<div class="popmenu-activator">
 
 					<SwapImages :state="copyUIOpen ? 'success' : 'idle'">
-						<img src="/assets/vertical-dots.svg" draggable="false" />
-						<template #success><img src="/assets/check.svg" draggable="false" /></template>
+						<img src="@/assets/vertical-dots.svg" draggable="false" />
+						<template #success><img src="@/assets/check.svg" draggable="false" /></template>
 					</SwapImages>
 				</div>
 			</template>
