@@ -56,7 +56,7 @@ const getToolImageURL = (toolName: string) => {
 			<!-- GITHUB -->
 			<ToolbarSection>
 				<ToolbarButton>
-					<a href="https://github.com/henryhell0/inkform" target="_blank">
+					<a href="https://github.com/henryholton/inkform" target="_blank">
 						<img src="@/assets/github.svg" style="transform: scale(1.5)" draggable="false" />
 					</a>
 				</ToolbarButton>
