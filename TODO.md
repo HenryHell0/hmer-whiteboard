@@ -10,6 +10,10 @@ Google SEO TODO:
 - switch / to being a landing page (seperate route) and have /whiteboard or something be the whiteboard (and then /whiteboard/feedback is feedbakc or whatever)
 - make a "copied email to clipabord 🎉" dialog on mailto failure (@click.prevent="...")- so make a scalable dialog opener w/ custom text... then do that.
 
+- DONT PUBLISH THIS CODE! we need to migrate to tailwind fully first
+- also we should just adpot font awesome as a dependency and use it normally instead of copying the files
+
+
 ## General
 
 ### FOR SAVING HANDWRITING/LATEX FOR DATASETS:
