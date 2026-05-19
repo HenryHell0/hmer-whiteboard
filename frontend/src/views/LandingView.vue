@@ -1,18 +1,48 @@
 <script setup lang="ts">
 import AnimtedPath from '@/components/ui/AnimtedPath.vue'
-import { useTemplateRef } from 'vue'
+import { wait } from '@/utils/utils'
+import { onMounted, useTemplateRef } from 'vue'
 
 function preloadEditor() {
 	import('@/views/EditorView.vue')
 }
+
+const recognitionDemo = useTemplateRef('recognitionDemo')
+const recognitionDemoHandwriting = useTemplateRef('recognitionDemoHandwriting')
+const recognitionDemoTypeset = useTemplateRef('recognitionDemoTypeset')
+
+onMounted(() => {
+	const observer = new IntersectionObserver(
+		async (entries) => {
+			if (entries[0]?.isIntersecting) {
+				await wait(200)
+				recognitionDemoHandwriting.value?.animate()
+				await wait(2000)
+				if (recognitionDemoTypeset.value) {
+					// recognitionDemoTypeset.value.style.opacity = '1'
+					recognitionDemoTypeset.value.style.clipPath = "inset(0 0 0 0)"
+				}
+
+				observer.disconnect()
+			}
+		},
+		{
+			// TODO we gotta fix these so that it works and like shows up at the right time.. idk..
+			threshold: 1,
+			scrollMargin: "0px 0px 0px 0px"
+		},
+	)
+
+	observer.observe(recognitionDemo.value!)
+})
 </script>
 <template>
-	<!-- consider doing a bunch of random math symbol SVGs like scattered around. that would be cool! -->
+	<!-- TODO consider doing a bunch of random math symbol SVGs like scattered around. that would be cool! -->
 	<div class="absolute inset-0 overflow-hidden -z-1 pointer-events-none">
 		<img class="absolute top-0 left-1/2 -translate-x-1/2 h-130 w-[150%] max-w-none object-cover object-top blur-xs mask-l-to-75% mask-b-to-100%" src="@/assets/screenshot.jpg" />
 	</div>
 
-	<section class="mt-12 mx-6 grid grid-cols-2 grid-rows-2 place-items-center">
+	<section class="mt-20 ml-12 grid grid-cols-2 grid-rows-2 place-items-center">
 		<img class="w-100" alt="Inkform" src="@/assets/logos/logo-long.svg" />
 		<RouterLink to="/editor" @mouseenter="preloadEditor" class="self-end p-3.5 rounded-md bg-blue-400 text-white! font-bold shadow-md transition-all hover:no-underline! hover:scale-110 hover:bg-blue-500 active:scale-90 active:bg-blue-500"> Start Writing </RouterLink>
 		<p class="mx-6 mt-6 self-start">An accessibility-first math whiteboard and document editor</p>
@@ -22,11 +52,11 @@ function preloadEditor() {
 		<img class="center w-[80%] max-w-250 shadow-[0px_15px_50px_15px_rgba(0,0,0,0.3)]" src="@/assets/screenshot.jpg" />
 	</div>
 
-	<section class="mt-20">
+	<section class="mt-30" ref="recognitionDemo">
 		<h1 class="text-xl text-center">Powerful Handwriting Recognition</h1>
 		<div class="relative mt-5 flex justify-around before:absolute before:left-1/2 before:top-1/2 before:-translate-y-1/2 before:h-9/10 before:w-px before:rounded-full before:-translate-x-1/2 before:bg-gray-900 before:content-['']">
 			<!-- handwritten -->
-			<AnimtedPath easing="linear" :speed="150" :equal-duration="true" ref="animation">
+			<AnimtedPath ref="recognitionDemoHandwriting" :autoplay="false" easing="linear" :speed="150" :equal-duration="true" :start-hidden="true">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="61.1755 178.3255 104.3765 51.4427" class="size-50">
 					<path style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round" d="M 74.113 189.656 C 74.113 186.73 74.673 182.913 72.919 180.285 C 72.342 179.42 69.932 177.466 68.969 178.751 C 67.754 180.374 67.625 183.548 67.946 185.484 C 69.005 191.853 68.601 198.35 69.14 204.831 C 69.473 208.846 70.077 212.806 70.077 216.849 C 70.077 220.833 70.795 225.527 68.458 229.037 C 67.531 230.429 63.848 229.558 62.77 228.696 C 60.931 227.226 60.908 223.715 61.577 221.707 C 61.805 221.022 62.637 218.73 63.504 218.73" transform="matrix(0.9999999999999999, 0, 0, 0.9999999999999999, 0, 0)" />
 					<path style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round" d="M 76.104 209.915 C 85.837 210.01 96.349 209.85 106.128 210.057 C 115.8 210.261 125.329 210.25 135 210.25" transform="matrix(0.9999999999999999, 0, 0, 0.9999999999999999, 0, 0)" />
@@ -44,8 +74,8 @@ function preloadEditor() {
 					<path style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round" d="M 165.368 210.212 C 160.88 214.278 154.712 221.271 150.139 224.865" transform="matrix(0.9999999999999999, 0, 0, 0.9999999999999999, 0, 0)" />
 				</svg>
 			</AnimtedPath>
-			<!-- recognized -->
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="313.2738 199.9011 92.3644 44.0487" class="size-50">
+			<!-- typeset -->
+			<svg class="size-50 transition-[clip-path] duration-1000 ease-in-out [clip-path:inset(0_100%_0_0)]" ref="recognitionDemoTypeset" xmlns="http://www.w3.org/2000/svg" viewBox="313.2738 199.9011 92.3644 44.0487">
 				<path
 					d="M 212.796 86.352 C 212.235 86.528 211.656 87.072 211.182 87.879 C 210.445 89.125 209.936 90.669 209.041 94.302 C 207.462 100.724 206.391 105.901 205.251 112.587 C 204.198 118.764 203.496 121.94 202.794 123.537 C 202.601 124.01 202.215 124.572 202.022 124.712 C 201.811 124.87 201.285 124.853 200.934 124.695 C 200.583 124.519 200.53 124.449 200.741 124.396 C 201.461 124.256 201.671 123.308 201.074 122.852 C 200.917 122.729 200.829 122.712 200.548 122.712 C 200.285 122.712 200.197 122.729 200.022 122.852 C 199.758 123.063 199.671 123.308 199.706 123.694 C 199.811 124.87 201.285 125.625 202.408 125.081 C 202.847 124.87 203.408 124.291 203.759 123.677 C 204.549 122.361 205.04 120.817 206.041 116.71 C 207.585 110.305 208.567 105.55 209.691 98.952 C 210.743 92.775 211.463 89.599 212.147 88.002 C 212.358 87.546 212.726 86.967 212.937 86.826 C 213.147 86.686 213.674 86.686 214.007 86.844 C 214.358 87.019 214.411 87.089 214.2 87.142 C 213.498 87.283 213.288 88.23 213.867 88.686 C 214.042 88.809 214.13 88.844 214.393 88.844 C 214.674 88.844 214.762 88.809 214.92 88.686 C 215.183 88.476 215.288 88.23 215.253 87.862 C 215.165 86.791 213.884 86.037 212.796 86.352 Z"
 					style=""
