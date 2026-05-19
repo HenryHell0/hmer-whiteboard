@@ -20,3 +20,10 @@ export async function copyText(text: string): Promise<boolean> {
 		return false
 	}
 }
+
+
+export function wait(waitMs: number) {
+	return new Promise((resolve) => {
+		setTimeout(resolve, waitMs)
+	})
+}
