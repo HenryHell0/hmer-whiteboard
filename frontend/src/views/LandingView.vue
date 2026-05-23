@@ -20,7 +20,7 @@ onMounted(() => {
 				await wait(2000)
 				if (recognitionDemoTypeset.value) {
 					// recognitionDemoTypeset.value.style.opacity = '1'
-					recognitionDemoTypeset.value.style.clipPath = "inset(0 0 0 0)"
+					recognitionDemoTypeset.value.style.clipPath = 'inset(0 0 0 0)'
 				}
 
 				observer.disconnect()
@@ -29,7 +29,7 @@ onMounted(() => {
 		{
 			// TODO we gotta fix these so that it works and like shows up at the right time.. idk..
 			threshold: 1,
-			scrollMargin: "0px 0px 0px 0px"
+			scrollMargin: '0px 0px 0px 0px',
 		},
 	)
 
@@ -48,12 +48,15 @@ onMounted(() => {
 		<p class="mx-6 mt-6 self-start">An accessibility-first math whiteboard and document editor</p>
 	</section>
 
-	<div class="mt-20 justify-center flex">
-		<img class="center w-[80%] max-w-250 shadow-[0px_15px_50px_15px_rgba(0,0,0,0.3)]" src="@/assets/screenshot.jpg" />
-	</div>
+	<section class="mt-20 justify-center flex">
+		<img class="center w-[80%] max-w-250 shadow-[0px_15px_50px_15px_rgba(0,0,0,0.3)] rounded-lg" src="@/assets/screenshot.jpg" />
+	</section>
 
+	<!-- for the recognition demo, we could have it animate one,
+	 then switch to another and animate that, and go through a
+	  bunch of different expressions -->
 	<section class="mt-30" ref="recognitionDemo">
-		<h1 class="text-xl text-center">Powerful Handwriting Recognition</h1>
+		<h1 class="text-2xl text-center">Powerful Handwriting Recognition</h1>
 		<div class="relative mt-5 flex justify-around before:absolute before:left-1/2 before:top-1/2 before:-translate-y-1/2 before:h-9/10 before:w-px before:rounded-full before:-translate-x-1/2 before:bg-gray-900 before:content-['']">
 			<!-- handwritten -->
 			<AnimtedPath ref="recognitionDemoHandwriting" :autoplay="false" easing="linear" :speed="150" :equal-duration="true" :start-hidden="true">
@@ -107,15 +110,47 @@ onMounted(() => {
 		</div>
 	</section>
 
-	<div class="mt-18 flex justify-around">
-		<div class="flex flex-col items-center">
-			<div class="border-2 rounded-3xl border-gray-950 size-30"></div>
-			<p class="text-center text-md">Math Tool Integration</p>
+	<!-- is there a way to stop repeating all these classes here? :(
+	 also, what could we include as things here?
+	 - math tools/graphing (graph/desmos image)
+	 - instant accessibility
+	 - document export
+	 - image recognition
+
+	 Also, I think instead of a grid or flexbox we could have seperate sections with text on the left and a square image on the right, and then swap those each time!
+	 -->
+	<!-- <section class="mt-20">
+		<h1 class="text-2xl text-center">Features</h1>
+		<div class="mt-6 flex justify-around">
+			<div class="flex flex-col items-center">
+				<img src="@/assets/graph.svg">
+				<p class="text-center text-md font-bold">Math Tools</p>
+			</div>
+			<div class="flex flex-col items-center">
+				<div class="border-2 rounded-3xl border-gray-950 size-30"></div>
+				<p class="text-center text-md">Instant Accessbility</p>
+			</div>
 		</div>
-		<div class="flex flex-col items-center">
-			<div class="border-2 rounded-3xl border-gray-950 size-30"></div>
-			<p class="text-center text-md">Instant Accessbility</p>
+	</section> -->
+
+	<!-- prolly extract these to components? -->
+	<section class="mt-30 grid grid-cols-2 justify-items-center">
+		<div class="text-center px-8">
+			<h1 class="text-2xl">Math Tools</h1>
+			<p class="text-gray-700">Inkform integrates powerful math tools like Desmos to make understanding quicker and easier</p>
 		</div>
-	</div>
+		<img class="size-40" />
+	</section>
+	<section class="mt-30 grid grid-cols-2 justify-items-center">
+		<div class="">
+			<img class="size-40" />
+		</div>
+		<div class="text-center px-8">
+			<h1 class="text-2xl">Accessible Exports</h1>
+			<p class="text-gray-700">Export whiteboards to PDF or HTML - fully tagged, accessible and ADA-compliant</p>
+		</div>
+	</section>
+
+	<div class="my-20" />
 </template>
 <style lang="css" scoped></style>
