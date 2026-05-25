@@ -25,13 +25,13 @@ const { copy, copyUIOpen } = useCopyTextWithUI(expression.latex)
 	<WidgetToolbar @close="widgetStore.deleteWidget(expression)">
 		<template #title> Expression </template>
 		<template #content>
-			<WidgetToolbarButton @pointerup="convertToGraph()">
-				<img src="@/assets/graph.svg" draggable="false" />
+			<WidgetToolbarButton @pointerup="convertToGraph()" aria-label="Graph this expression">
+				<img src="@/assets/graph.svg" draggable="false" alt="" />
 			</WidgetToolbarButton>
-			<WidgetToolbarButton @pointerup="copy()">
+			<WidgetToolbarButton @pointerup="copy()" aria-label="Copy this expression">
 				<SwapImages :state="copyUIOpen ? 'success' : 'idle'">
-					<img src="@/assets/copy.svg" draggable="false" />
-					<template #success><img src="@/assets/check.svg" draggable="false" /></template>
+					<img src="@/assets/copy.svg" draggable="false" alt="" />
+					<template #success><img src="@/assets/check.svg" draggable="false" alt="" /></template>
 				</SwapImages>
 			</WidgetToolbarButton>
 		</template>

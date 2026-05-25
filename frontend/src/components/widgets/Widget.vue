@@ -54,6 +54,8 @@ function contentClicked() {
 			@pointerdown="resizeDown"
 			src="@/assets/resize.svg"
 			draggable="false"
+			role="button"
+			alt="Resize this widget"
 		/>
 	</div>
 </template>

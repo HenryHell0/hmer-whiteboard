@@ -21,12 +21,14 @@ const isDragging = inject<Ref<boolean>>('isDragging')
 
 		<!-- X BUTTON -->
 		<!-- TODO this should probably be wrapped in a <button> -->
-		<img @pointerdown.stop src="@/assets/x.svg" @pointerup="$emit('close')" class="x-button" draggable="false" />
+		<button @pointerup="$emit('close')" aria-label="Delete this widget">
+			<img @pointerdown.stop src="@/assets/x.svg" class="x-button" draggable="false" alt="" />
+		</button>
 	</div>
 </template>
 <style scoped>
 .toolbar {
-      width: 100%;
+	width: 100%;
 	position: relative;
 
 	border-top-left-radius: inherit;
