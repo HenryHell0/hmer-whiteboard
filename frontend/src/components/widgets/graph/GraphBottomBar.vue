@@ -14,7 +14,7 @@ function changeColor(expression: ExpressionData, color: string) {
 }
 </script>
 <template>
-	<div class="expression-list" v-if="widget.expressions.length > 0">
+	<div class="expression-list" v-if="widget.expressions.length > 0" role="list" aria-label="The list of expressions graphed on this widget">
 		<div class="expression-container" v-for="expression in widget.expressions" :key="expression.id">
 			<GraphBottomBarExpression
 				:expression="expression"
