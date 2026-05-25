@@ -18,19 +18,19 @@ const getToolImageURL = (toolName: string) => {
 <template>
 	<div ref="element" class="toolbar-container">
 		<ToolbarSection>
-			<ToolbarButton @click="openRouteDialog('editor:info')">
-				<img src="@/assets/info.svg" style="transform: scale(1.45)" draggable="false" />
+			<ToolbarButton @click="openRouteDialog('editor:info')" aria-label="About Inkform">
+				<img src="@/assets/info.svg" style="transform: scale(1.45)" draggable="false" alt="" />
 			</ToolbarButton>
 		</ToolbarSection>
 
 		<div class="toolbar-group">
 			<!-- UNDO/REDO -->
 			<ToolbarSection class="undo-redo-container">
-				<ToolbarButton @click="historyStore.undo()" :disabled="!historyStore.undoAvailable">
-					<UndoIcon></UndoIcon>
+				<ToolbarButton @click="historyStore.undo()" :disabled="!historyStore.undoAvailable" aria-label="Undo">
+					<UndoIcon aria-hidden="true"></UndoIcon>
 				</ToolbarButton>
-				<ToolbarButton @click="historyStore.redo()" :disabled="!historyStore.redoAvailable">
-					<RedoIcon></RedoIcon>
+				<ToolbarButton @click="historyStore.redo()" :disabled="!historyStore.redoAvailable" aria-label="Redo">
+					<RedoIcon aria-hidden="true"></RedoIcon>
 				</ToolbarButton>
 			</ToolbarSection>
 			<!-- TOOLS -->
@@ -40,8 +40,9 @@ const getToolImageURL = (toolName: string) => {
 					:key="tool"
 					:active="sessionStore.activeTool === tool"
 					@click="sessionStore.activeTool = tool"
+					:aria-label="`${tool} tool`"
 				>
-					<img :src="getToolImageURL(tool)" draggable="false" />
+					<img :src="getToolImageURL(tool)" draggable="false" alt=""/>
 				</ToolbarButton>
 			</ToolbarSection>
 		</div>
@@ -49,15 +50,15 @@ const getToolImageURL = (toolName: string) => {
 		<!-- FEEDBACK -->
 		<div class="toolbar-group">
 			<ToolbarSection>
-				<ToolbarButton @click="openRouteDialog('editor:feedback')">
-					<img src="@/assets/feedback.svg" draggable="false" />
+				<ToolbarButton @click="openRouteDialog('editor:feedback')" aria-label="Give Feedback">
+					<img src="@/assets/feedback.svg" draggable="false" alt="" />
 				</ToolbarButton>
 			</ToolbarSection>
 			<!-- GITHUB -->
 			<ToolbarSection>
-				<ToolbarButton>
+				<ToolbarButton aria-label="See Inkform on Github">
 					<a href="https://github.com/henryholton/inkform" target="_blank">
-						<img src="@/assets/github.svg" style="transform: scale(1.5)" draggable="false" />
+						<img src="@/assets/github.svg" style="transform: scale(1.5)" draggable="false" alt="" />
 					</a>
 				</ToolbarButton>
 			</ToolbarSection>
