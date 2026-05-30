@@ -1,12 +1,12 @@
 import { ViteSSG } from 'vite-ssg'
-import App from './App.vue'
+import App from '@/App.vue'
 import VueMathjax from 'vue-mathjax-next'
-import { routes } from './routes'
+import { routes } from '@/routes/router'
 import { createPinia } from 'pinia'
-import {} from '@unhead/vue'
+import {} from '@unhead/vue' // ???
 //import custom directives
-import { vTouchPrevent } from './directives/vTouchPrevent'
-import { vDrawingOpacity } from './directives/vDrawingOpacity'
+import { vTouchPrevent } from '@/directives/vTouchPrevent'
+import { vDrawingOpacity } from '@/directives/vDrawingOpacity' // ? this might be unused
 
 // import styles
 import './styles/pallete.css'

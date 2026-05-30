@@ -9,16 +9,7 @@ import WidgetContainer from '@/components/core/WidgetContainer.vue'
 import OverlaySvg from '@/components/core/OverlaySvg.vue'
 import MainCanvas from '@/components/core/MainCanvas.vue'
 import { ToastProvider, ToastViewport, TooltipProvider } from 'reka-ui'
-import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
-
-// preload dialogs
-onMounted(() => {
-	setTimeout(() => {
-		import('@/views/dialogs/EditorInfoDialog.vue')
-		import('@/views/dialogs/EditorFeedbackDialog.vue')
-	}, 1000)
-})
 </script>
 <template>
 	<div class="template">

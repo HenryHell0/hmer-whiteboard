@@ -2,10 +2,7 @@
 import AnimtedPath from '@/components/ui/AnimtedPath.vue'
 import { wait } from '@/utils/utils'
 import { onMounted, useTemplateRef } from 'vue'
-
-function preloadEditor() {
-	import('@/views/EditorView.vue')
-}
+import { loadAsyncEditorView } from '@/routes/router';
 
 const recognitionDemo = useTemplateRef('recognitionDemo')
 const recognitionDemoHandwriting = useTemplateRef('recognitionDemoHandwriting')
@@ -44,7 +41,7 @@ onMounted(() => {
 
 	<section class="mt-20 ml-12 grid grid-cols-2 grid-rows-2 place-items-center">
 		<img class="w-100" src="@/assets/logos/logo-long.svg" alt="Inkform logo"/>
-		<RouterLink to="/editor" @mouseenter="preloadEditor" class="self-end p-3.5 rounded-md bg-blue-400 text-white! font-bold shadow-md transition-all hover:no-underline! hover:scale-110 hover:bg-blue-500 active:scale-90 active:bg-blue-500"> Start Writing </RouterLink>
+		<RouterLink to="/editor" @mouseenter="loadAsyncEditorView" class="self-end p-3.5 rounded-md bg-blue-400 text-white! font-bold shadow-md transition-all hover:no-underline! hover:scale-110 hover:bg-blue-500 active:scale-90 active:bg-blue-500"> Start Writing </RouterLink>
 		<p class="mx-6 mt-6 self-start">An accessibility-first math whiteboard and document editor</p>
 	</section>
 
