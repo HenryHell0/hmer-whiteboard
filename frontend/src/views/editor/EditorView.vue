@@ -4,10 +4,10 @@
 - but for now with only one view but the potential for more it's fine
 -->
 <script setup lang="ts">
-import Toolbar from '@/components/core/toolbar/Toolbar.vue'
-import WidgetContainer from '@/components/core/WidgetContainer.vue'
-import OverlaySvg from '@/components/core/OverlaySvg.vue'
-import MainCanvas from '@/components/core/MainCanvas.vue'
+import Toolbar from './components/core/toolbar/Toolbar.vue'
+import WidgetContainer from './components/core/WidgetContainer.vue'
+import OverlaySvg from './components/core/OverlaySvg.vue'
+import MainCanvas from './components/core/MainCanvas.vue'
 import { ToastProvider, ToastViewport, TooltipProvider } from 'reka-ui'
 import { RouterView } from 'vue-router'
 </script>

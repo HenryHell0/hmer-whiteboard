@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ExpressionContent from './ExpressionContent.vue'
-import LoadingBar from '@/components/ui/LoadingBar.vue'
+import LoadingBar from '@/components/LoadingBar.vue'
 import { useWidgetStore } from '@/stores/useWidgetStore'
 import { ExpressionData } from '@/utils/widgetData'
 import { onMounted, provide, ref, watch, type Ref } from 'vue'

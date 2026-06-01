@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AnimtedPath from '@/components/ui/AnimtedPath.vue'
+import AnimtedPath from '@/components/AnimtedPath.vue'
 import { wait } from '@/utils/utils'
 import { onMounted, useTemplateRef } from 'vue'
 import { loadAsyncEditorView } from '@/routes/router';

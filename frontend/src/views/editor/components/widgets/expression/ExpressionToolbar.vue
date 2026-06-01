@@ -6,7 +6,7 @@ import { useWidgetStore } from '@/stores/useWidgetStore'
 import { inject } from 'vue'
 import { ConvertExpressionToGraphAction, executeAction } from '@/utils/actions'
 import { useCopyTextWithUI } from '@/composables/useCopyTextWithUI'
-import SwapImages from '@/components/ui/SwapImages.vue'
+import SwapImages from '@/components/SwapImages.vue'
 import { logGraphExpression } from '@/utils/analytics'
 
 const expression = inject<Widget>('widget')! as ExpressionData

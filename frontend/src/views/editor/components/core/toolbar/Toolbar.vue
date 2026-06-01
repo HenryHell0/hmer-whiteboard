@@ -12,7 +12,7 @@ const historyStore = useHistoryStore()
 const { open: openRouteDialog } = useRouteDialogs()
 
 const getToolImageURL = (toolName: string) => {
-  return new URL(`../../../assets/${toolName}.svg`, import.meta.url).href;
+  return new URL(`../../../../../assets/${toolName}.svg`, import.meta.url).href;
 };
 </script>
 <template>

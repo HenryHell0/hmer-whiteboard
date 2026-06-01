@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import PopMenu from '@/components/ui/PopMenu.vue'
-import SwapImages from '@/components/ui/SwapImages.vue'
+import PopMenu from '@/components/PopMenu.vue'
+import SwapImages from '@/components/SwapImages.vue'
 import { useCopyTextWithUI } from '@/composables/useCopyTextWithUI'
 import { ExpressionData, graphColors } from '@/utils/widgetData'
 

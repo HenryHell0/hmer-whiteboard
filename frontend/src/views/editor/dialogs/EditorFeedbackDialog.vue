@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import FullscreenDialog from '@/components/ui/FullscreenDialog.vue'
+import FullscreenDialog from '@/components/FullscreenDialog.vue'
 import { useRouteDialogs } from '@/composables/useRouteDialogs'
 import { useHead } from '@unhead/vue'
 const { close } = useRouteDialogs()
